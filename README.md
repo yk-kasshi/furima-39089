@@ -2,48 +2,39 @@
 
 
 ## usersテーブル
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nick_name          | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| user_image         | string |             |
-| introduction       | text   |             |
-| family_name        | string | null: false |
-| first_name         | string | null: false |
-| birth_day          | date   | null: false |
+| Column                         | Type   | Options                  |
+| ------------------------------ | ------ | ------------------------ |
+| nick_name                      | string | null: false              |
+| email                          | string | null: false unique: true |
+| encrypted_password             | string | null: false              |
+| introduction                   | text   |                          |
+| kanji_last_name                | string | null: true               |
+| kanji_first_name               | string | null: true               |
+| hiragana_last_name             | string | null: true               |
+| hiragana_first_name            | string | null: true               |
+| katakana_last_name             | string | null: true               |
+| katakana_first_name            | string | null: true               |
+| full_width_katakana_last_name  | string | null: true               |
+| full_width_katakana_first_name | string | null: true               |
+| birth_day                      | string | null: true               |
 
 ### Association
 - has_many :products dependent: :destroy
-- belongs_to :destination dependent: :destroy
 - belongs_to :card dependent: :destroy
 
 
 ## destinationテーブル
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| family_name   | string  | null: false                    |
-| first_name    | string  | null: false                    |
-| user_id       | integer | null: false, foreign_key: true |
-| post_code     | string  | null: false                    |
-| prefecture    | string  | null: false                    |
-| city          | string  | null: false                    |
-| address       | string  | null: false                    |
-| building_name | string  |                                |
-| phone_number  | string  |                                |
+| Column        | Type    | Options     |
+| ------------- | ------- | ------------|
+| post_code     | string  | null: false |
+| prefecture    | string  | null: false |
+| city          | string  | null: false |
+| address       | string  | null: false |
+| building_name | string  |             |
+| phone_number  | string  |             |
 
 ### Association
-- belongs_to :user
-
-
-## categoryテーブル
-| Column   | Type       | Options                        |
-| -------- | ---------- | ------------------------------ |
-| name     | string     | null: false                    |
-| ancestry | references |                                |
-
-### Association
-- has_many :products
+- has_many :user
 
 
 ## productテーブル
@@ -70,21 +61,3 @@
 - has_many :images dependent: :destroy
 - belongs_to_active_hash :prefecture
 
-
-## imagesテーブル
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| image      | string     | null: false                    |
-| product_id | integer    | null: false, foreign_key: true |
-
-### Association
-- bekongs_to :product
-
-
-## brandテーブル
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| name       | string     | index: false                   |
-
-### Association
-- has_many :products
