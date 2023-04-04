@@ -31,14 +31,15 @@
 
 
 ## destinationsテーブル
-| Column        | Type    | Options     |
-| ------------- | ------- | ------------|
-| post_code     | string  | null: false |
-| prefecture_id | integer | null: false |
-| city          | string  | null: false |
-| address       | string  | null: false |
-| building_name | string  |             |
-| phone_number  | string  | null: true  |
+| Column        | Type    | Options                        |
+| ------------- | ------- | ------------------------------ |
+| id            | integer | null: false, primary_key: true |
+| post_code     | string  | null: false                    |
+| prefecture_id | integer | null: false                    |
+| city          | string  | null: false                    |
+| address       | string  | null: false                    |
+| building_name | string  |                                |
+| phone_number  | string  | null: true                     |
 
 ### Association
 - has_many :orders
