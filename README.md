@@ -7,7 +7,6 @@
 | nick_name                      | string | null: false              |
 | email                          | string | null: false unique: true |
 | encrypted_password             | string | null: false              |
-| introduction                   | text   | null: false              |
 | last_name                      | string | null: true               |
 | first_name                     | string | null: true               |
 | last_name_kana                 | string | null: true               |
@@ -15,8 +14,19 @@
 | birth_day                      | date   | null: true               |
 
 ### Association
-- has_many :products dependent: :destroy
-- belongs_to :card dependent: :destroy
+- has_many :products
+- belongs_to :card
+
+
+## cardsテーブル
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| customer_id | string     | null: false                    |
+| card_id     | string     | null: false                    |
+
+### Association
+- belongs_to :user
 
 
 ## destinationsテーブル
@@ -39,7 +49,6 @@
 | name             | string     | null: false                     |
 | user             | references | null: false, foreign_key: true  |
 | price            | string     | null: false                     |
-| status           | string     | null: false                     |
 | description      | text       | null: false                     |
 | condition_id     | integer    | null: false                     |
 | shopping_day_id  | integer    | null: false                     |
@@ -48,9 +57,9 @@
 | shopping_id      | integer    | null: false                     |
 
 ### Association
-- belongs_to :user dependent: :destroy
-- belongs_to :category dependent: :destroy
-- belongs_to :brand dependent: :destroy
-- has_many :images dependent: :destroy
+- belongs_to :user
+- belongs_to :category
+- belongs_to :brand
+- has_many :images
 - belongs_to_active_hash :prefecture
 
