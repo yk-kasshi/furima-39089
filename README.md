@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :products
-- belongs_to :cards
+- belongs_to :card
 
 
 ## cardsテーブル
@@ -23,12 +23,11 @@
 | ----------- | ---------- | ------------------------------ |
 | user        | references | null: false, foreign_key: true |
 | product     | references | null: false, foreign_key: true |
-| destination | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :product
-- belongs_to :destination
+- has_one :destination
 
 
 ## destinationsテーブル
@@ -48,8 +47,10 @@
 ## productsテーブル
 | Column           | Type       | Options                         |
 | ---------------- | ---------- | ------------------------------- |
-| name             | string     | null: false                     |
 | user             | references | null: false, foreign_key: true  |
+| item             | references | null: false, foreign_key: true  |
+| destination      | references | null: false, foreign_key: true  |
+| name             | string     | null: false                     |
 | price            | integer    | null: false                     |
 | description      | text       | null: false                     |
 | condition_id     | integer    | null: false                     |
@@ -60,5 +61,6 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :product
+- belongs_to :destination
+- has_many :cards
 
