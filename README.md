@@ -15,18 +15,20 @@
 
 ### Association
 - has_many :products
-- belongs_to :card
+- belongs_to :cards
 
 
 ## cardsテーブル
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
 | user        | references | null: false, foreign_key: true |
-| customer_id | string     | null: false                    |
-| card_id     | string     | null: false                    |
+| product     | references | null: false, foreign_key: true |
+| destination | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
+- belongs_to :product
+- belongs_to :destination
 
 
 ## destinationsテーブル
@@ -40,7 +42,7 @@
 | phone_number  | string  | null: true  |
 
 ### Association
-- has_many :user
+- has_many :orders
 
 
 ## productsテーブル
@@ -48,7 +50,7 @@
 | ---------------- | ---------- | ------------------------------- |
 | name             | string     | null: false                     |
 | user             | references | null: false, foreign_key: true  |
-| price            | string     | null: false                     |
+| price            | integer    | null: false                     |
 | description      | text       | null: false                     |
 | condition_id     | integer    | null: false                     |
 | shopping_day_id  | integer    | null: false                     |
@@ -58,8 +60,5 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :category
-- belongs_to :brand
-- has_many :images
-- belongs_to_active_hash :prefecture
+- belongs_to :product
 
