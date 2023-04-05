@@ -39,12 +39,10 @@
 | address       | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: true                     |
-| card_id       | references | null: false, foreign_key: true |
+| card          | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :card
-- has_one :order, dependent: :destroy
-- has_one :user, through: :order
 
 ## productsテーブル
 | Column           | Type       | Options                         |
