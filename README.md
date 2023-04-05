@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :products
-- has_one :card
+- has_many :card
 
 
 ## cardsテーブル
@@ -39,16 +39,16 @@
 | address       | string  | null: false                    |
 | building_name | string  |                                |
 | phone_number  | string  | null: true                     |
+| card_id       | integer | null: false, foreign_key: true |
 
 ### Association
-- has_many :orders
-
+- belongs_to :card, foreign_key: true
+- has_one :order
 
 ## productsテーブル
 | Column           | Type       | Options                         |
 | ---------------- | ---------- | ------------------------------- |
 | user             | references | null: false, foreign_key: true  |
-| destination      | references | null: false, foreign_key: true  |
 | name             | string     | null: false                     |
 | price            | integer    | null: false                     |
 | description      | text       | null: false                     |
@@ -60,6 +60,5 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :destination
 - has_one :card
 
