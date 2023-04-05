@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :products
-- has_many :card
+- has_many :cards
 
 
 ## cardsテーブル
@@ -31,19 +31,20 @@
 
 
 ## destinationsテーブル
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| post_code     | string  | null: false                    |
-| prefecture_id | integer | null: false                    |
-| city          | string  | null: false                    |
-| address       | string  | null: false                    |
-| building_name | string  |                                |
-| phone_number  | string  | null: true                     |
-| card_id       | integer | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_code     | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: true                     |
+| card_id       | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :card, foreign_key: true
-- has_one :order
+- belongs_to :card
+- has_one :order, dependent: :destroy
+- has_one :user, through: :order
 
 ## productsテーブル
 | Column           | Type       | Options                         |
